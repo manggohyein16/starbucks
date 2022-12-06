@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>siblings demo</title>
+  <style>
+  
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<style>
+    .search_submit {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+
+                margin : 0 0 0 5px;
+                padding : 0.5rem 1rem;
+
+                font-family: "Noto Sans KR", sans-serif;
+                font-size : 1rem;
+                font-weight: 400;
+                text-align: center;
+                text-decoration: none;
+
+                display : inline-block;
+                width : auto;
+
+                border : none;
+                border-radius: 4px;
+
+                box-shadow: 0 4px 6px 1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                cursor : pointer;
+                transition: 0.5s;
+            }
+
+            .search_submit:active, .search_submit:hover, .search_submit:focus {
+                background : #ADC8FF;
+                color : white;
+                outline : 0;
+            }
+
+            .search_submit:disabled {
+                opacity : 0.5;
+            }
+</style>
+<body>
+ 
+<ul>
+  <li>One</li>
+  <li>Two</li>
+  <li class="hilite">Three</li>
+  <li>Four</li>
+</ul>
+ 
+<ul>
+  <li>Five</li>
+  <li>Six</li>
+  <li>Seven</li>
+</ul>
+ 
+<ul>
+  <li>Eight</li>
+  <li class="hilite">Nine</li>
+  <li>Ten</li>
+  <li class="hilite">Eleven</li>
+</ul>
+ 
+<p>Unique siblings: <b></b></p>
+
+<ol id="list">
+    <li>첫 번째 아이템</li>
+    <li>두 번째 아이템</li>
+</ol>
+
+<ul>
+    <li>에스프레소</li>
+    <li>아메리카노</li>
+    <li>카페라떼</li>
+</ul>
+
+<div><input type="checkbox" id="espresso"><label for="espresso">에스프레소</label></div>
+<div><input type="checkbox" id="americano"><label for="americano">아메리카노</label></div>
+<div><input type="checkbox" id="caffeLatte"><label for="caffeLatte">카페라떼</label></div>
+
+<input type='checkbox'
+       name='animal' 
+       value='dog'
+       onclick='getCheckedCnt()'/> 개
+<input type='checkbox' 
+       name='animal' 
+       value='cat' 
+       onclick='getCheckedCnt()'/> 고양이
+<input type='checkbox' 
+       name='animal' 
+       value='rabbit' 
+       onclick='getCheckedCnt()'/> 토끼
+
+<div id='result'></div>
+
+
+<button class='search_close' onclick='search_close()'>닫기</button>
+
+
+<script>
+var len = $( ".hilite" ).siblings()
+  .css( "color", "red" )
+  .length;
+$( "b" ).text( len );
+
+
+$("#list").append("<li>새로 추가된  아이템</li>");
+
+
+var coffees = $("li");
+$("#length").text("커피의 종류는 총 " + coffees.length + "가지 입니다.");
+
+var checked = $(":checked");
+$("#count").text("선택한 커피는 총 " + checked.length + "가지 입니다.");
+
+function getCheckedCnt()  {
+  // 선택된 목록 가져오기
+  const query = 'input[name="animal"]:checked';
+  const selectedElements = 
+      document.querySelectorAll(query);
+  
+  // 선택된 목록의 갯수 세기
+  const selectedElementsCnt =
+        selectedElements.length;
+  
+  // 출력
+  document.getElementById('result').innerText
+    = selectedElementsCnt;
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>
